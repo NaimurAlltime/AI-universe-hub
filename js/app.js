@@ -2,12 +2,12 @@ const loadAiData = async() => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     const res = await fetch(url);
     const data = await res.json();
-    displayAiTools(data.data.tools);
+    displayAiTools(data.data.tools.slice(0, 6));
 }
 
 const displayAiTools = tools => {
     console.log(tools)
-    const aiToolsContainer = document.getElementById('ai-tools-container')
+    const aiToolsContainer = document.getElementById('ai-tools-container');
         
     // display all phone 
     tools.forEach(tool => {
@@ -43,5 +43,16 @@ const displayAiTools = tools => {
     });
 }
 
+
+const seeMoreData = async() => {
+    const url = `https://openapi.programming-hero.com/api/ai/tools`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayAiTools(data.data.tools);
+
+    // hide see more button 
+    const seeMore = document.getElementById('see-more');
+    seeMore.classList.add('d-none');
+}
 
 loadAiData()
