@@ -29,10 +29,10 @@ const displayAiTools = tools => {
            <div class="d-flex justify-content-between mt-3">
             <div>
               <h4 class="card-title">${tool.name}</h4>
-              <p class="pt-2"><i class="fa-sharp fa-solid fa-calendar-days"></i> <span class="ms-2"> 11/01/2022</span> </p>
+              <p class="pt-2"><i class="fa-sharp fa-solid fa-calendar-days"></i> <span class="ms-2"> ${tool.published_in}</span> </p>
              </div>
              <div>
-               <button class="btn text-danger fs-2" type="submit"><i class="fa-solid fa-arrow-right"></i></button>
+               <button class="btn text-danger fs-3" type="submit"><i class="fa-solid fa-arrow-right"></i></button>
              </div>
            </div>
         </div>
