@@ -6,8 +6,17 @@ const loadAiData = async() => {
 }
 
 const displayAiTools = tools => {
+     // start Spinner or loader 
+     toggleSpinner(true);
     console.log(tools)
+
     const aiToolsContainer = document.getElementById('ai-tools-container');
+
+    aiToolsContainer.innerText = '';
+
+    //  show see more button 
+    const seeMore = document.getElementById('see-more');
+    seeMore.classList.remove('d-none');
         
     // display all phone 
     tools.forEach(tool => {
@@ -17,13 +26,13 @@ const displayAiTools = tools => {
         
         toolDiv.innerHTML = `
         <div class="card h-100">
-        <img class="img-fluid" src="${tool.image}" class="card-img-top" alt="...">
+        <img class="img-fluid h-100" src="${tool.image}" class="card-img-top" alt="...">
         <div class="card-body">
           <h4 class="card-title mt-3 mb-2">Features:</h4>
            <ol>
-             <li> ${tool.features[0]} </li>
-             <li> ${tool.features[1]} </li>
-             <li> ${tool.features[2]} </li>
+             <li> ${tool.features[0] ? tool.features[0] : 'features not found'} </li>
+             <li> ${tool.features[1] ? tool.features[1] : 'features not found'} </li>
+             <li> ${tool.features[2] ? tool.features[2] : 'features not found'} </li>
             </ol>
             <hr>
            <div class="d-flex justify-content-between mt-3">
@@ -41,9 +50,22 @@ const displayAiTools = tools => {
     
         aiToolsContainer.appendChild(toolDiv);
     });
+     // stop Spinner or loader 
+     toggleSpinner(false);
 }
 
+// loading 
+const toggleSpinner = isLoading => {
+  const loadingSection = document.getElementById('loading');
+  if(isLoading){
+      loadingSection.classList.remove('d-none');
+  }else{
+      loadingSection.classList.add('d-none');
+  }
 
+}
+
+// see more data 
 const seeMoreData = async() => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     const res = await fetch(url);

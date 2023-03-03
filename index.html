@@ -29,12 +29,21 @@
           </div>
             <!-- show all  -->
             <div>
-              <div id="see-more" class="text-center my-3">
-                  <button onclick="seeMoreData()" class="btn btn-danger">See More</button>
+              <div id="see-more" class="text-center my-3 d-none">
+                  <button id="see-more-btn" onclick="seeMoreData()" class="btn btn-danger">See More</button>
               </div>
             </div>
         </section>
          <!-- curd section end  -->
+
+         <!-- (loader) spinner section  -->
+       <section>
+        <div id="loading" style="height: 400px;" class="d-flex justify-content-center align-items-center">
+          <div class="spinner-border text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+         </div>
+     </section>
     </main>
     
     <!-- bootstrap js file  -->
