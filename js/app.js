@@ -41,7 +41,7 @@ const displayAiTools = tools => {
               <p class="pt-2"><i class="fa-sharp fa-solid fa-calendar-days"></i> <span class="ms-2"> ${tool.published_in}</span> </p>
              </div>
              <div>
-               <button class="btn text-danger fs-3" type="submit"><i class="fa-solid fa-arrow-right"></i></button>
+               <button onclick="loadAiToolDetails('${tool.id}')" class="btn text-danger fs-3"  data-bs-toggle="modal" data-bs-target="#aiToolDetailsModal" type="submit"><i class="fa-solid fa-arrow-right"></i></button>
              </div>
            </div>
         </div>
@@ -75,6 +75,45 @@ const seeMoreData = async() => {
     // hide see more button 
     const seeMore = document.getElementById('see-more');
     seeMore.classList.add('d-none');
+}
+
+// // ai tools details 
+// const loadAiToolDetails = async(id) => {
+//   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+//   console.log(url)
+//   const res = await fetch(url);
+//   const data = await res.json();
+//   displayAiToolDetails(data.data.tools);
+// }
+// // display Phone Details 
+// const displayAiToolDetails = tool => {
+//      console.log(tool);
+//   const modalTitle = document.getElementById('aiToolDetailsModalLabel');
+//   modalTitle.innerText = tool.name;
+//   // document.getElementById('modal-body').innerHTML = `
+//   // <img src="${phone.image}" class="img-fluid">
+//   // <p class="mt-2">Release Date: ${phone.releaseDate ? phone.releaseDate : 'Release Date Not Found!'}</p>
+//   // <p>Storage: ${phone.mainFeatures ? phone.mainFeatures.storage : 'Storage Data Information Not Found!'}</p>
+//   // <p>DisplaySize
+//   // : ${phone.mainFeatures ? phone.mainFeatures.displaySize : 'displaySize Data Information Not Found!'}</p>
+// //  `
+// }
+
+
+// phone details 
+const loadAiToolDetails = async(id) => {
+  const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+  console.log(url)
+  const res = await fetch(url);
+  const data = await res.json();
+  displayAiToolDetails(data.data);
+}
+
+// display Phone Details 
+const displayAiToolDetails = tool => {
+     console.log(tool);
+
+
 }
 
 loadAiData()
