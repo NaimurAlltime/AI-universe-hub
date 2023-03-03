@@ -77,28 +77,6 @@ const seeMoreData = async() => {
     seeMore.classList.add('d-none');
 }
 
-// // ai tools details 
-// const loadAiToolDetails = async(id) => {
-//   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
-//   console.log(url)
-//   const res = await fetch(url);
-//   const data = await res.json();
-//   displayAiToolDetails(data.data.tools);
-// }
-// // display Phone Details 
-// const displayAiToolDetails = tool => {
-//      console.log(tool);
-//   const modalTitle = document.getElementById('aiToolDetailsModalLabel');
-//   modalTitle.innerText = tool.name;
-//   // document.getElementById('modal-body').innerHTML = `
-//   // <img src="${phone.image}" class="img-fluid">
-//   // <p class="mt-2">Release Date: ${phone.releaseDate ? phone.releaseDate : 'Release Date Not Found!'}</p>
-//   // <p>Storage: ${phone.mainFeatures ? phone.mainFeatures.storage : 'Storage Data Information Not Found!'}</p>
-//   // <p>DisplaySize
-//   // : ${phone.mainFeatures ? phone.mainFeatures.displaySize : 'displaySize Data Information Not Found!'}</p>
-// //  `
-// }
-
 
 // phone details 
 const loadAiToolDetails = async(id) => {
@@ -108,11 +86,36 @@ const loadAiToolDetails = async(id) => {
   const data = await res.json();
   displayAiToolDetails(data.data);
 }
-
+/* <img src="${tool.image_link[0]}" class="img-fluid"> */
 // display Phone Details 
 const displayAiToolDetails = tool => {
      console.log(tool);
+     console.log(tool.features[1].feature_name);
 
+    //  document.getElementById('modal-body').innerHTML = `
+    //  <img src="${tool.image_link[0]}" class="img-fluid">
+    //  <img src="${tool.image_link[0]}" class="img-fluid">
+    //  `;
+    // card one description 
+    document.getElementById('tool-description').innerText = tool.description;
+     
+    // pricing data
+    document.getElementById('pricing-plan-1').innerText = tool.pricing[0].plan;
+    document.getElementById('pricing-price-1').innerText = tool.pricing[0].price;
+    document.getElementById('pricing-plan-2').innerText = tool.pricing[1].plan;
+    document.getElementById('pricing-price-2').innerText = tool.pricing[1].price;
+    document.getElementById('pricing-plan-3').innerText = tool.pricing[2].plan;
+    document.getElementById('pricing-price-3').innerText = tool.pricing[2].price;
+
+    // Features data
+    document.getElementById('features-li-1').innerText = tool.features[1].feature_name;
+    document.getElementById('features-li-2').innerText = tool.features[2].feature_name;
+    document.getElementById('features-li-3').innerText = tool.features[3].feature_name;
+
+    // integrations data
+    document.getElementById('integrations-li-1').innerText = tool.integrations[0];
+    document.getElementById('integrations-li-2').innerText = tool.integrations[1];
+    document.getElementById('integrations-li-3').innerText = tool.integrations[2];
 
 }
 
