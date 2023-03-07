@@ -5,6 +5,7 @@ const loadAiData = async() => {
     displayAiTools(data.data.tools.slice(0, 6));
 }
 
+// display data 
 const displayAiTools = tools => {
      // start Spinner or loader 
      toggleSpinner(true);
@@ -63,7 +64,7 @@ const displayAiTools = tools => {
      toggleSpinner(false);
 }
 
-// loading 
+// loading or toggleSpinner function 
 const toggleSpinner = isLoading => {
   const loadingSection = document.getElementById('loading');
   if(isLoading){
@@ -87,7 +88,7 @@ const seeMoreData = async() => {
 }
 
 
-// phone details 
+// phone details function 
 const loadAiToolDetails = async(id) => {
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
   // console.log(url)
@@ -176,7 +177,7 @@ leftId.appendChild(div1);
             tool.image_link[0]
           }" alt="" style="height:300px;" class="img-fluid">
 
-          ${tool.accuracy.score? `<div class="position-absolute"><button class="btn btn-danger rounded" style="margin-top:-35.3rem; margin-left:23.8rem; px-3">${score}% accuracy</button></div>` : ''}
+          ${tool.accuracy.score? `<div class="position-absolute"><button class="btn btn-danger rounded" style="margin-top:-35.3rem; margin-left:23rem; px-3; overflow: hidden">${score}% accuracy</button></div>` : ''}
 
         </div>
         <div class="text-center pb-3">
@@ -196,6 +197,25 @@ leftId.appendChild(div1);
   `;
     rightId.appendChild(div);
 
+}
+
+// Sort By Date function 
+const sortByDateBtn = async() => {
+  // hide see more button 
+  const seeMoreBtn = document.getElementById('see-more-btn');
+    seeMoreBtn.classList.add("d-none");
+
+    const url = `https://openapi.programming-hero.com/api/ai/tools`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayByDate(data.data.tools);
+}
+
+// display Sort By Date 
+function displayByDate(sortedData){
+  sortedData.sort((previous, current) => new Date(current.published_in) - new Date(previous.published_in));
+
+ displayAiTools(sortedData);
 }
 
 loadAiData()
